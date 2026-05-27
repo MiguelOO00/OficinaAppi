@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: API Oficina Automóveis, dos sprints que já tinha feito a duas semanas, ainda falta coisas devido a quere adicionar o modulo extra e quero adicionar um endpoit do gestor ainda
+  description: Documentação oficial da API para gestão de mecânicos, serviços e intervenções.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:4000
+    description: DataBase local, na porta 4000
+
+paths:
+  # --- AUTENTICAÇÃO ---
+  /auth/register:
+    post:
+      summary: Registar um novo mecânico
+      tags: [Autenticação]
+      responses:
+        '201':
+          description: Criado com sucesso
+  
+  /auth/login:
+    post:
+      summary: Login no sistema
+      tags: [Autenticação]
+      responses:
+        '200':
+          description: Autenticado com sucesso
+
+  /auth/logout:
+    post:
+      summary: Sair do sistema
+      tags: [Autenticação]
+      responses:
+        '200':
+          description: Sessão encerrada
+
+  /auth/mecanicos:
+    get:
+      summary: gerir todos os mecânicos
+      tags: [Autenticação]
+      responses:
+        '200':
+          description: Lista de mecânicos
+
+  # --- SERVIÇOS ---
+  /servicos:
+    get:
+      summary: Obter todos os serviços
+      tags: [Serviços]
+      responses:
+        '200':
+          description: Lista de serviços
+    post:
+      summary: Adicionar um novo serviço
+      tags: [Serviços]
+      responses:
+        '201':
+          description: Serviço adicionado
+
+  /servicos/{id}:
+    put:
+      summary: Atualizar um serviço pelo ID
+      tags: [Serviços]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Serviço atualizado
+    delete:
+      summary: Apagar um serviço pelo ID
+      tags: [Serviços]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Serviço apagado
+
+  # --- INTERVENÇÕES ---
+  /intervencoes:
+    get:
+      summary: gerir todas as intervenções
+      tags: [Intervenções]
+      responses:
+        '200':
+          description: Lista de intervenções
+    post:
+      summary: Adicionar uma nova intervenção
+      tags: [Intervenções]
+      responses:
+        '201':
+          description: Intervenção criada
+
+  /intervencoes/{id}:
+    get:
+      summary: Procurar uma intervenção específica pelo ID
+      tags: [Intervenções]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dados da intervenção
+    delete:
+      summary: Apagar uma intervenção pelo ID
+      tags: [Intervenções]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Intervenção eliminada com sucesso
+
+components:
+  schemas:
+    Mecanico:
+      type: object
+      properties:
+        nome: { type: string }
+        email: { type: string }
+    Servico:
+      type: object
+      properties:
+        nome: { type: string }
+        preco: { type: number }
+    Intervencao:
+      type: object
+      properties:
+        mecanicoId: { type: string }
+        servicoId: { type: string }
+        data: { type: string, format: date }

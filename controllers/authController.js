@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs'); //importa o bcrypt que serve para encriptar 
 const jwt = require('jsonwebtoken');//importa o jwt que serve para gerar tokens;   
 
 
-const secretKey = process.env.JWT_SECRET || 'your_secret_key';
+const secretKey = process.env.JWT_SECRET || 'RobMigFaculdade2026Letivo'; //Middleware Key;
 
 //REGISTAR -> esta funcao cria um novo mecanico!! IMPORTANTE;
 const register = async (req, res) => {
@@ -49,7 +49,7 @@ const login = async (req, res) => {
             httpOnly: true,         //impede acesso via JS, IMPORTANTE;
             sameSite: 'Strict',     //protege contra CSRF -> ;
             maxAge: 60 * 60 * 1000  //1 hora de duração que o token apresenta; 
-        });
+        } );
 
         res.json({ message: 'Autenticado com sucesso!' });
     } catch (error) {

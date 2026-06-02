@@ -3,7 +3,7 @@ const router = express.Router();
 
 //importa as funções do controller
 const { getAllIntervencoes, createIntervencao, getIntervencoesByMecanico, deleteIntervencao } = require('../controllers/intervencaoController');
-const verifyToken = require('../middlewares/authMiddleware'); 
+const { verifyToken } = require('../middlewares/authMiddleware'); 
 
 
 //Routes:

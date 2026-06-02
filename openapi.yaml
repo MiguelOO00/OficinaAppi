@@ -83,6 +83,15 @@ paths:
         '200':
           description: Serviço apagado
 
+      Servico:
+      type: object
+      required: [nome, descricao, precoServico, duracaoEstimada]
+      properties:
+        nome: { type: string, example: "Mudança de Óleo" }
+        descricao: { type: string, example: "Troca de óleo e filtro" }
+        precoServico: { type: number, example: 45.00 }
+        duracaoEstimada: { type: number, example: 30 }
+
   # --- INTERVENÇÕES ---
   /intervencoes:
     get:

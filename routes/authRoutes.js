@@ -4,7 +4,7 @@ const Mecanico = require('../models/mecanicoModels');
 
 //importa as funções do controller;
 const { register, login, logout } = require('../controllers/authController');
-const verifyToken = require('../middlewares/authMiddleware'); 
+const { verifyToken } = require('../middlewares/authMiddleware'); 
 
 //Routes:
 router.post('/register', register); //route para introduzir um novo mecânico;

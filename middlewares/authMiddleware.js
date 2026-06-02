@@ -17,7 +17,6 @@ function verifyToken(req, res, next) {
         //cria a descodificacao do token;
         const descodifica = jwt.verify(token, keySecreta);
 
-        //guarda os dados dos mecanicos no req para utilizar depois;
         req.user = descodifica;
 
         //vai para a próxima rota;
@@ -27,5 +26,14 @@ function verifyToken(req, res, next) {
     }
 }
 
+//verifica se é mecanico!! 
+const authorizeMecanico = (req, res, next) => {
+    
 
-module.exports = verifyToken; //exporta a função;
+    if (req.user.role !== 'mecanico' && req.user.role !== 'gestor') {
+        return res.status(403).json({ message: 'Acesso Negado! Apenas mecânicos podem alterar os serviços!!' });
+    }
+    next();
+};
+
+module.exports = { verifyToken, authorizeMecanico }; //exporta as funções; IMPORTANTE;

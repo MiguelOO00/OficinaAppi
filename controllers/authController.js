@@ -57,6 +57,7 @@ const login = async (req, res) => {
     }
 };
 
+
 //LOGOUT -> Limpa o cookie;
 const logout = (req, res) => {
 
@@ -64,6 +65,5 @@ const logout = (req, res) => {
     res.json({ message: 'A Sessão foi encerrada com sucesso.' });
     
 };
-
 
 module.exports = { register, login, logout };

@@ -30,10 +30,9 @@ function verifyToken(req, res, next) {
 const authorizeMecanico = (req, res, next) => {
     
 
-    if (req.user.role !== 'mecanico' && req.user.role !== 'gestor') {
-        return res.status(403).json({ message: 'Acesso Negado! Apenas mecânicos podem alterar os serviços!!' });
+    if (req.user.role !== 'mecanico') {
+        return res.status(403).json({ message: 'Acesso negado! Apenas mecânicos podem gerir o catálogo!!' });
     }
     next();
 };
-
 module.exports = { verifyToken, authorizeMecanico }; //exporta as funções; IMPORTANTE;

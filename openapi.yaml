@@ -151,3 +151,79 @@ components:
         mecanicoId: { type: string }
         servicoId: { type: string }
         data: { type: string, format: date }
+
+ # --- VEICULOS ---
+documentacao_faltante.yaml
+  /veiculos:
+    get:
+      summary: Obter todos os veículos
+      tags: [Veículos]
+      responses:
+        '200':
+          description: procurar os veículos
+    post:
+      summary: Criaar um novo veículo (Apenas Gestores)
+      tags: [Veículos]
+      responses:
+        '201':
+          description: Veículo criado com sucesso
+
+  /veiculos/{id}:
+    put:
+      summary: Atualizar um veículo pelo ID (Apenas Gestores)
+      tags: [Veículos]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Veículo atualizado
+    delete:
+      summary: Apagar um veículo pelo ID (Apenas Gestores)
+      tags: [Veículos]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Veículo eliminado
+
+  # --- ESTATÍSTICAS ---
+  /stats/total:
+    get:
+      summary: Total de intervenções realizadas
+      tags: [Estatísticas]
+      responses:
+        '200':
+          description: Número total
+
+  /stats/top-servicos:
+    get:
+      summary: Serviços mais requisitados
+      tags: [Estatísticas]
+      responses:
+        '200':
+          description: Lista de serviços populares
+
+  /stats/tempo:
+    get:
+      summary: Tempo total investido por tipo de serviço
+      tags: [Estatísticas]
+      responses:
+        '200':
+          description: Soma de tempos por serviço
+
+
+    Veiculo:
+      type: object
+      properties:
+        matricula: { type: string }
+        marca: { type: string }
+        modelo: { type: string }
+        preço: { type: number }

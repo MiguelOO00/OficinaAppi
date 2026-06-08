@@ -31,8 +31,22 @@ const authorizeMecanico = (req, res, next) => {
     
 
     if (req.user.role !== 'mecanico') {
+
         return res.status(403).json({ message: 'Acesso negado! Apenas mecânicos podem gerir o catálogo!!' });
+
     }
     next();
 };
-module.exports = { verifyToken, authorizeMecanico }; //exporta as funções; IMPORTANTE;
+ 
+//verifica se é gestor!!!
+const authorizeGestor = (req, res, next) => {
+
+    if (req.user.role !== 'gestor') {
+
+        return res.status(403).json({ message: 'Acesso negado! Apenas gestores podem gerir os veículos!!' });
+        
+    }
+    next();
+};
+
+module.exports = { verifyToken, authorizeMecanico, authorizeGestor}; //exporta as funções; IMPORTANTE;

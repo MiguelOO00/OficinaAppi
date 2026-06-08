@@ -24,6 +24,9 @@ app.use('/intervencoes', intervencaoRoutes);
 const statsRoutes = require('./routes/statsRoutes'); 
 app.use('/stats', statsRoutes); 
 
+const veiculoRoutes = require('./routes/veiculoRoutes');
+app.use('/veiculos', veiculoRoutes);
+
 app.listen(4000, () => {
     console.log('Servidor iniciado na porta 4000');
 });

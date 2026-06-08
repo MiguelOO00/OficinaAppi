@@ -7,6 +7,8 @@ const interacaoSchema = new mongoose.Schema({
 
     servico: {type:mongoose.Schema.Types.ObjectId, ref: 'Servico', required: true }, //nome do serviço que foi realizado na intervencao -> Referencia ao ServicoModels;
 
+    veiculo: { type: mongoose.Schema.Types.ObjectId, ref: 'Veiculo', required: true }, //referência ao veiculo onde foi realizada a intervenção;
+
     data: {type:Date, required: true}, 
     
     duracaoEstimada: {type:Number, required: true }, 

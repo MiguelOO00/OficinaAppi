@@ -4,7 +4,6 @@ const router = express.Router(); //cria o router;
 
 //importa as funçoes do controller
 const { getAllServicos, createServico, updateServico, deleteServico } = require('../controllers/servicoController');
-
 const { verifyToken, authorizeMecanico } = require('../middlewares/authMiddleware');
 
 
